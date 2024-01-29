@@ -37,7 +37,7 @@ class StartScreen extends StatelessWidget {
                         const BorderSide(color: Color(0xFF4E7D4C), width: 2.0),
                   ),
                 ),
-                hintText: 'Search Something',
+                hintText: 'Search Something', 
                 leading: const Icon(
                   Icons.search,
                   color: Color(0xFF4E7D4C),
@@ -65,7 +65,14 @@ class StartScreen extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Color(0xFF4E7D4C)),
                   ),
-                  child: const Text('Get Started'),
+                  child: const Text(
+                    'Get Started',
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.19,
+                    ),
+                  ),
                 ),
               )
             ],
