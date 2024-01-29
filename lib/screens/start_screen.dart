@@ -64,7 +64,7 @@ class StartScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ChoosePathScreen()),
+                            builder: (context) => const ChoosePathScreen()),
                       );
                     },
                     style: ButtonStyle(
@@ -74,7 +74,7 @@ class StartScreen extends StatelessWidget {
                         ),
                       ),
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Color(0xFF4E7D4C)),
+                          MaterialStateProperty.all<Color>(const Color(0xFF4E7D4C)),
                     ),
                     child: const Text(
                       'Get Started',
