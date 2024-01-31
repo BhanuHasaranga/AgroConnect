@@ -1,3 +1,4 @@
+import 'package:agro_connect/screens/landing_screen.dart';
 import 'package:flutter/material.dart';
 
 class ChoosePathScreen extends StatelessWidget {
@@ -106,7 +107,7 @@ class ChoosePathScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ChoosePathScreen()),
+                          builder: (context) => const LandingScreen()),
                     );
                   },
                   child: const Padding(
