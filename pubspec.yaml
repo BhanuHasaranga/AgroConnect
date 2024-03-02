@@ -63,6 +63,8 @@ flutter:
   assets:
     - lib/assets/full-shot-smiley-women-with-hats 1.png
     - lib/assets/logo.png
+    - lib/assets/user.png
+    - lib/assets/gardening 1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
