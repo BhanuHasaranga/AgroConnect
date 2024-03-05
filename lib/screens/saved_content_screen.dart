@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../widgets/contentCategories.dart';
 import '../widgets/navBar.dart';
 import '../widgets/newsCard.dart';
-import '../widgets/postSomethingField.dart';
 
 class SavedContentScreen extends StatelessWidget {
   const SavedContentScreen({Key? key}) : super(key: key);

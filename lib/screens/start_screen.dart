@@ -42,7 +42,9 @@ class StartScreen extends StatelessWidget {
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                       side: const BorderSide(
-                          color: Color(0xFF4E7D4C), width: 2.0),
+                        color: Color(0xFF4E7D4C),
+                        width: 2.0,
+                      ),
                     ),
                   ),
                   hintText: 'Search Something',
@@ -73,8 +75,8 @@ class StartScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(const Color(0xFF4E7D4C)),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xFF4E7D4C)),
                     ),
                     child: const Text(
                       'Get Started',
