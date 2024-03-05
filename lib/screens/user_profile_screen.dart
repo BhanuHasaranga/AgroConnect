@@ -1,6 +1,7 @@
 import 'package:agro_connect/widgets/questionCard.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/myAppBar.dart';
 import '../widgets/navBar.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -8,34 +9,7 @@ class UserProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'Profile',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF373737),
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-            iconSize: 35,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_outlined),
-            iconSize: 35,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-            iconSize: 35,
-          )
-        ],
-      ),
+      appBar: const MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: SingleChildScrollView(
