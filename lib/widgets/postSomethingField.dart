@@ -14,7 +14,7 @@ class PostSomethingField extends StatelessWidget {
         IconButton(
           onPressed: () {},
           icon: const CircleAvatar(
-            // radius: 30,
+            radius: 15,
             backgroundImage: AssetImage(
               'lib/assets/user.png',
             ),
