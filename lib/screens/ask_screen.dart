@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/communityCircle.dart';
 import '../widgets/contentCategories.dart';
 import '../widgets/myAppBar.dart';
 import '../widgets/navBar.dart';
@@ -16,9 +17,32 @@ class AskScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
-            const Row(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CommunityCircle(),
+                CommunityCircle(),
+                CommunityCircle(),
+                Column(
+                  children: [
+                    Container(
+                      width: 78,
+                      height: 78,
+                      decoration: ShapeDecoration(
+                        color: Color(0x23373737),
+                        shape: OvalBorder(),
+                      ),
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    )
+                  ],
+                )
               ],
             ),
             const SizedBox(height: 10.0),
@@ -56,32 +80,6 @@ class AskScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const NavBar(),
-    );
-  }
-}
-
-class CommunityCircle extends StatelessWidget {
-  const CommunityCircle({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 40,
-          backgroundImage: AssetImage(
-            'lib/assets/user.png',
-          ),
-        ),
-        Text(
-          'Cattle Clan',
-          style: TextStyle(
-            fontSize: 12,
-          ),
-        ),
-      ],
     );
   }
 }
