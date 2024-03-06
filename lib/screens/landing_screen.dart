@@ -10,16 +10,16 @@ class LandingScreen extends StatelessWidget {
   const LandingScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MyAppBar(),
+    return Scaffold(
+      appBar: const MyAppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
-            PostSomethingField(
+            const PostSomethingField(
               lableText: 'Post a News',
             ),
-            ContentCategories(
+            const ContentCategories(
               category1: 'Latest',
               category2: 'Trending',
               category3: 'All',
@@ -30,8 +30,18 @@ class LandingScreen extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    NewsCard(),
-                    NewsCard(),
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 4, // Number of NewsCard widgets
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(
+                        height: 16.0,
+                      ), // Add space of 16.0 pixels between NewsCard widgets
+                      itemBuilder: (BuildContext context, int index) {
+                        return const NewsCard();
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -39,7 +49,7 @@ class LandingScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: const NavBar(),
     );
   }
 }

@@ -10,45 +10,44 @@ class AskScreen extends StatelessWidget {
   const AskScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MyAppBar(),
+    return Scaffold(
+      appBar: const MyAppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
-                Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage(
-                        'lib/assets/user.png',
-                      ),
-                    ),
-                    Text(
-                      'Cattle Clan',
-                    )
-                  ],
-                )
+                CommunityCircle(),
               ],
             ),
-            PostSomethingField(
-              lableText: 'Post a News',
+            const SizedBox(height: 10.0),
+            const PostSomethingField(
+              lableText: 'Ask a Question',
             ),
-            ContentCategories(
+            const ContentCategories(
               category1: 'Top',
               category2: 'New',
               category3: 'All',
             ),
             SizedBox(
-              height: 390,
+              height: 380,
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    NewsCard(),
-                    NewsCard(),
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 4, // Number of NewsCard widgets
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(
+                        height: 16.0,
+                      ), // Add space of 16.0 pixels between NewsCard widgets
+                      itemBuilder: (BuildContext context, int index) {
+                        return const NewsCard();
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -56,7 +55,33 @@ class AskScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: const NavBar(),
+    );
+  }
+}
+
+class CommunityCircle extends StatelessWidget {
+  const CommunityCircle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 40,
+          backgroundImage: AssetImage(
+            'lib/assets/user.png',
+          ),
+        ),
+        Text(
+          'Cattle Clan',
+          style: TextStyle(
+            fontSize: 12,
+          ),
+        ),
+      ],
     );
   }
 }

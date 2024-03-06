@@ -9,13 +9,13 @@ class SavedContentScreen extends StatelessWidget {
   const SavedContentScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MyAppBar(),
+    return Scaffold(
+      appBar: const MyAppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
-            ContentCategories(
+            const ContentCategories(
               category1: 'All',
               category2: 'News',
               category3: 'Questions',
@@ -26,8 +26,18 @@ class SavedContentScreen extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    NewsCard(),
-                    NewsCard(),
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 4, // Number of NewsCard widgets
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(
+                        height: 16.0,
+                      ), // Add space of 16.0 pixels between NewsCard widgets
+                      itemBuilder: (BuildContext context, int index) {
+                        return const NewsCard();
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -35,7 +45,7 @@ class SavedContentScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: const NavBar(),
     );
   }
 }
