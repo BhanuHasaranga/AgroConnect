@@ -1,8 +1,8 @@
-import 'package:agro_connect/widgets/questionCard.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/myAppBar.dart';
 import '../widgets/navBar.dart';
+import '../widgets/newsCard.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
@@ -143,7 +143,7 @@ class UserProfileScreen extends StatelessWidget {
                   FilledButton(
                     onPressed: () {},
                     style: FilledButton.styleFrom(
-                      backgroundColor: Color(0xFF4E7D4C),
+                      backgroundColor: const Color(0xFF4E7D4C),
                     ),
                     child: const Text(
                       'Urban Gardening',
@@ -152,7 +152,7 @@ class UserProfileScreen extends StatelessWidget {
                   FilledButton(
                     onPressed: () {},
                     style: FilledButton.styleFrom(
-                      backgroundColor: Color(0xFF4E7D4C),
+                      backgroundColor: const Color(0xFF4E7D4C),
                     ),
                     child: const Text(
                       'Urban Gardening',
@@ -171,8 +171,18 @@ class UserProfileScreen extends StatelessWidget {
                   letterSpacing: 0.19,
                 ),
               ),
-              newsCard(),
-              newsCard(),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 4, // Number of NewsCard widgets
+                separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(
+                  height: 16.0,
+                ), // Add space of 16.0 pixels between NewsCard widgets
+                itemBuilder: (BuildContext context, int index) {
+                  return const NewsCard();
+                },
+              ),
             ],
           ),
         ),
