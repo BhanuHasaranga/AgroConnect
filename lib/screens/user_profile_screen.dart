@@ -56,13 +56,14 @@ class UserProfileScreen extends StatelessWidget {
                           onPressed: () {},
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<OutlinedBorder>(
-                                RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                              side: const BorderSide(
-                                color: Color(0xFF4E7D4C),
-                                width: 1.0,
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                                side: const BorderSide(
+                                  color: Color(0xFF4E7D4C),
+                                  width: 1.0,
+                                ),
                               ),
-                            )),
+                            ),
                             padding: const MaterialStatePropertyAll<EdgeInsets>(
                               EdgeInsets.symmetric(horizontal: 16.0),
                             ),
@@ -83,8 +84,14 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
               const Text(
                 'Urban Farmer Extraordinaire! 🌱 Passionate about sustainable agriculture in urban environments. Growing fresh, organic veggies, herbs, and microgreens in small spaces.',
+              ),
+              SizedBox(
+                height: 10,
               ),
               const Text(
                 'Basic Info',
@@ -96,6 +103,9 @@ class UserProfileScreen extends StatelessWidget {
                   height: 0,
                   letterSpacing: 0.19,
                 ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               const Row(
                 children: [
@@ -127,6 +137,9 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
               const Text(
                 'Interests',
                 style: TextStyle(
@@ -137,6 +150,9 @@ class UserProfileScreen extends StatelessWidget {
                   height: 0,
                   letterSpacing: 0.19,
                 ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Row(
                 children: [
@@ -160,6 +176,9 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
               const Text(
                 'News/Questions',
                 style: TextStyle(
@@ -170,6 +189,9 @@ class UserProfileScreen extends StatelessWidget {
                   height: 0,
                   letterSpacing: 0.19,
                 ),
+              ),
+              SizedBox(
+                height: 16,
               ),
               ListView.separated(
                 shrinkWrap: true,

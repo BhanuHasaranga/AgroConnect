@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/create_news_screen.dart';
+
 class PostSomethingField extends StatelessWidget {
   final String lableText;
   const PostSomethingField({
@@ -25,7 +27,12 @@ class PostSomethingField extends StatelessWidget {
           child: SizedBox(
             height: 35,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  CreateNews()),
+                );
+              },
               style: ButtonStyle(
                 alignment: Alignment.centerLeft,
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
