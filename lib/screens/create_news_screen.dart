@@ -169,7 +169,7 @@ class _CreateNewsState extends State<CreateNews> {
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: 30,
             ),
             Row(
               children: [
@@ -188,7 +188,7 @@ class _CreateNewsState extends State<CreateNews> {
               ],
             ),
             const SizedBox(
-              height: 25,
+              height: 30,
             ),
             Row(
               children: [
