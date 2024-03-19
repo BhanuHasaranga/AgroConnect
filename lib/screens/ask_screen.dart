@@ -1,3 +1,4 @@
+import 'package:agro_connect/screens/ask_question_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/communityCircle.dart';
@@ -48,6 +49,7 @@ class AskScreen extends StatelessWidget {
             const SizedBox(height: 10.0),
             const PostSomethingField(
               lableText: 'Ask a Question',
+              path: AskQuestion(),
             ),
             const ContentCategories(
               category1: 'Top',

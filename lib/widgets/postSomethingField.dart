@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../screens/create_news_screen.dart';
-
 class PostSomethingField extends StatelessWidget {
   final String lableText;
+  final Widget path;
   const PostSomethingField({
     Key? key,
     required this.lableText,
+    required this.path,
   }) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class PostSomethingField extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>  CreateNews()),
+                  MaterialPageRoute(builder: (context) => path),
                 );
               },
               style: ButtonStyle(

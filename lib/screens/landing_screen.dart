@@ -1,3 +1,4 @@
+import 'package:agro_connect/screens/create_news_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/contentCategories.dart';
@@ -18,6 +19,7 @@ class LandingScreen extends StatelessWidget {
           children: [
             const PostSomethingField(
               lableText: 'Post a News',
+              path: CreateNews(),
             ),
             const ContentCategories(
               category1: 'Latest',
