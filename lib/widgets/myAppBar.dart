@@ -1,3 +1,4 @@
+import 'package:agro_connect/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,7 +18,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Search()),
+            );
+          },
           icon: const Icon(Icons.search),
           iconSize: 25,
         ),

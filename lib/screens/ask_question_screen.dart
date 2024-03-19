@@ -94,7 +94,7 @@ class _AskQuestionState extends State<AskQuestion> {
     return TextField(
       maxLength: maxLength,
       maxLines: maxLines,
-      onChanged: onChanged,
+      onSubmitted: onChanged,
       decoration: InputDecoration(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
