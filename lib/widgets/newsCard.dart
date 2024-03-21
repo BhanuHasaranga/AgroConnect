@@ -2,7 +2,6 @@ import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
-
   final String publisherImg;
   final String publisherName;
   final String publishedTime;
@@ -11,7 +10,6 @@ class NewsCard extends StatelessWidget {
   final String content;
 
   const NewsCard({
-    
     Key? key,
     required this.publisherImg,
     required this.publisherName,
@@ -19,7 +17,6 @@ class NewsCard extends StatelessWidget {
     required this.img,
     required this.headline,
     required this.content,
-
   }) : super(key: key);
 
   @override
@@ -37,7 +34,7 @@ class NewsCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 Row(
+                Row(
                   children: [
                     Avatar(
                       size: 20,
@@ -77,13 +74,13 @@ class NewsCard extends StatelessWidget {
             Image.asset(
               img,
             ),
-             Text(
+            Text(
               headline,
               style: TextStyle(
                 fontSize: 22,
               ),
             ),
-             Text(
+            Text(
               content,
               style: TextStyle(
                 fontSize: 12,

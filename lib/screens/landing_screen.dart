@@ -41,7 +41,16 @@ class LandingScreen extends StatelessWidget {
                         height: 16.0,
                       ), // Add space of 16.0 pixels between NewsCard widgets
                       itemBuilder: (BuildContext context, int index) {
-                        return const NewsCard();
+                        return NewsCard(
+                          publisherImg: 'lib/assets/user.png',
+                          publisherName: 'Melissa Jan ',
+                          publishedTime: '3 Min ago',
+                          img: 'lib/assets/gardening 1.png',
+                          headline:
+                              'Innovative Hydroponic System Increases Crop Yields by 30%',
+                          content:
+                              'A groundbreaking hydroponic system utilizing advanced technology and',
+                        );
                       },
                     ),
                   ],
