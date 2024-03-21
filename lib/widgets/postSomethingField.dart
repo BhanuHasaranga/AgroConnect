@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'userAvatar.dart';
+
 class PostSomethingField extends StatelessWidget {
   final String lableText;
   final Widget path;
@@ -13,14 +15,9 @@ class PostSomethingField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: const CircleAvatar(
-            radius: 15,
-            backgroundImage: AssetImage(
-              'lib/assets/user.png',
-            ),
-          ),
+        Avatar(
+          size: 15,
+          src: 'lib/assets/user.png',
         ),
         Expanded(
           flex: 1,

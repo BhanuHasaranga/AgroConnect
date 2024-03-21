@@ -1,3 +1,4 @@
+import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
@@ -20,18 +21,13 @@ class NewsCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                const Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const CircleAvatar(
-                        // radius: 30,
-                        backgroundImage: AssetImage(
-                          'lib/assets/user.png',
-                        ),
-                      ),
+                    Avatar(
+                      size: 20,
+                      src: 'lib/assets/user.png',
                     ),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(

@@ -1,11 +1,11 @@
 import 'package:agro_connect/screens/ask_question_screen.dart';
+import 'package:agro_connect/widgets/questionCard.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/communityCircle.dart';
 import '../widgets/contentCategories.dart';
 import '../widgets/myAppBar.dart';
 import '../widgets/navBar.dart';
-import '../widgets/newsCard.dart';
 import '../widgets/postSomethingField.dart';
 
 class AskScreen extends StatelessWidget {
@@ -71,7 +71,7 @@ class AskScreen extends StatelessWidget {
                         height: 16.0,
                       ), // Add space of 16.0 pixels between NewsCard widgets
                       itemBuilder: (BuildContext context, int index) {
-                        return const NewsCard();
+                        return QuestionCard();
                       },
                     ),
                   ],

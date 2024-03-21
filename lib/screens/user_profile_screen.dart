@@ -1,3 +1,4 @@
+import 'package:agro_connect/screens/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/myAppBar.dart';
@@ -53,7 +54,13 @@ class UserProfileScreen extends StatelessWidget {
                           ),
                         ),
                         OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EditProfile()),
+                            );
+                          },
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<OutlinedBorder>(
                               RoundedRectangleBorder(
