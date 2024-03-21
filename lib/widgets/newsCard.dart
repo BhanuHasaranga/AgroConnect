@@ -2,9 +2,25 @@ import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
+
+  final String publisherImg;
+  final String publisherName;
+  final String publishedTime;
+  final String img;
+  final String headline;
+  final String content;
+
   const NewsCard({
-    super.key,
-  });
+    
+    Key? key,
+    required this.publisherImg,
+    required this.publisherName,
+    required this.publishedTime,
+    required this.img,
+    required this.headline,
+    required this.content,
+
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +37,11 @@ class NewsCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Row(
+                 Row(
                   children: [
                     Avatar(
                       size: 20,
-                      src: 'lib/assets/user.png',
+                      src: publisherImg,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +49,7 @@ class NewsCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'Melissa Jane ',
+                              publisherName,
                             ),
                             Icon(
                               Icons.verified_outlined,
@@ -43,7 +59,7 @@ class NewsCard extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          '3 Min ago',
+                          publishedTime,
                           style: TextStyle(
                             fontSize: 11,
                           ),
@@ -59,16 +75,16 @@ class NewsCard extends StatelessWidget {
               ],
             ),
             Image.asset(
-              'lib/assets/gardening 1.png',
+              img,
             ),
-            const Text(
-              'Innovative Hydroponic System Increases Crop Yields by 30%',
+             Text(
+              headline,
               style: TextStyle(
                 fontSize: 22,
               ),
             ),
-            const Text(
-              'A groundbreaking hydroponic system utilizing advanced technology and',
+             Text(
+              content,
               style: TextStyle(
                 fontSize: 12,
               ),
