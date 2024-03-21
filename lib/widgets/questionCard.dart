@@ -2,9 +2,22 @@ import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
 
 class QuestionCard extends StatelessWidget {
+    final String publisherImg;
+  final String publisherName;
+  final String publishedTime;
+  final String img;
+  final String question;
+  final String content;
+
   const QuestionCard({
-    super.key,
-  });
+    Key? key,
+    required this.publisherImg,
+    required this.publisherName,
+    required this.publishedTime,
+    required this.img,
+    required this.question,
+    required this.content,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +36,14 @@ class QuestionCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Avatar(size: 20, src: 'lib/assets/user.png'),
-                    const Column(
+                    Avatar(size: 20, src: publisherImg),
+                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             Text(
-                              'Melissa Jane ',
+                              publisherName,
                             ),
                             Icon(
                               Icons.verified_outlined,
@@ -40,7 +53,7 @@ class QuestionCard extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          '3 Min ago',
+                          publishedTime,
                           style: TextStyle(
                             fontSize: 11,
                           ),
@@ -56,16 +69,16 @@ class QuestionCard extends StatelessWidget {
               ],
             ),
             Image.asset(
-              'lib/assets/gardening 1.png',
+              img,
             ),
-            const Text(
-              'Innovative Hydroponic System Increases Crop Yields by 30%',
+             Text(
+              question,
               style: TextStyle(
                 fontSize: 22,
               ),
             ),
-            const Text(
-              'A groundbreaking hydroponic system utilizing advanced technology and',
+             Text(
+              content,
               style: TextStyle(
                 fontSize: 12,
               ),
