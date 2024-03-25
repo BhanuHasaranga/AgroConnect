@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 
 class CommunityCircle extends StatelessWidget {
+  final double size;
+  final String src;
+  final String communityName;
   const CommunityCircle({
-    super.key,
-  });
+    Key? key,
+    required this.size,
+    required this.src,
+    required this.communityName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       children: [
         CircleAvatar(
-          radius: 40,
+          radius: size,
           backgroundImage: AssetImage(
-            'lib/assets/user.png',
+            src,
           ),
         ),
         Text(
-          'Cattle Clan',
+          communityName,
           style: TextStyle(
             fontSize: 12,
           ),

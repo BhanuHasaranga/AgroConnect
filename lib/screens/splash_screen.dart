@@ -1,4 +1,6 @@
-import 'package:agro_connect/screens/start_screen.dart';
+import 'package:agro_connect/auth/auth_screen.dart';
+// import 'package:agro_connect/screens/login_screen.dart';
+// import 'package:agro_connect/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:agro_connect/screens/home.dart';
 
@@ -48,13 +50,20 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     _fullStopController.forward();
     await Future.delayed(Duration(milliseconds: 1000));
 
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => StartScreen(),
+    //   ),
+    // );
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => StartScreen(
-        ),
+        builder: (context) => Auth(),
       ),
     );
+
   }
 
   @override

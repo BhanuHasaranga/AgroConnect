@@ -19,11 +19,20 @@ class AskScreen extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CommunityCircle(),
-                CommunityCircle(),
-                CommunityCircle(),
+                Row(
+                  children: [
+                    CommunityCircle(
+                      size: 40,
+                      src: 'lib/assets/user.png',
+                      communityName: 'Cattle Clan',
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
                 Column(
                   children: [
                     Container(
