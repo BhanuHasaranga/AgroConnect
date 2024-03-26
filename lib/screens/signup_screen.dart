@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:agro_connect/firebase_services/firebase_auth.dart';
+import 'package:agro_connect/util/dialog.dart';
+import 'package:agro_connect/util/excption.dart';
 import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
 
@@ -117,20 +122,34 @@ class _SignUpState extends State<SignUp> {
   }
 
   Widget SubmitButton(String type) {
-    return Container(
-      alignment: Alignment.center,
-      width: double.infinity,
-      height: 44,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Color(0xFF4E7D4C),
-      ),
-      child: Text(
-        type,
-        style: TextStyle(
-          fontSize: 23,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+    return InkWell(
+      onTap: () async {
+        try {
+          await Authentication().Signup(
+              username: username.text,
+              email: email.text,
+              password: password.text,
+              passwordConfirm: passwordConfirm.text,
+              profilePic: File(''));
+        } on exceptions catch (e) {
+          dialogBuilder(context, e.message);
+        }
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        height: 44,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xFF4E7D4C),
+        ),
+        child: Text(
+          type,
+          style: TextStyle(
+            fontSize: 23,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
