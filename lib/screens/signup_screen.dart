@@ -7,8 +7,9 @@ import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
-  final VoidCallback show;
-  const SignUp(this.show, {super.key});
+  // final VoidCallback show;
+  // const SignUp({super.key});
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -106,7 +107,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           GestureDetector(
-            onTap: widget.show,
+            // onTap: widget.show,
             child: Text(
               "Log In",
               style: TextStyle(
@@ -132,6 +133,7 @@ class _SignUpState extends State<SignUp> {
               passwordConfirm: passwordConfirm.text,
               profilePic: File(''));
         } on exceptions catch (e) {
+          print(e.message);
           dialogBuilder(context, e.message);
         }
       },

@@ -5,25 +5,20 @@ Future<void> dialogBuilder(BuildContext context, String message) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text(
+        title: const Text(
           'Error',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         content: Text(
           message,
-          style: TextStyle(
-            fontSize: 20,
-          ),
+          style: const TextStyle(fontSize: 20),
         ),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('OK'),
+            child: const Text('Ok'),
           ),
         ],
       );

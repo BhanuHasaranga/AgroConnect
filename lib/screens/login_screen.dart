@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
-  final VoidCallback show;
-  const Login(this.show, {super.key});
+  // final VoidCallback show;
+  // const Login({super.key});
+   const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -79,7 +80,7 @@ class _LoginState extends State<Login> {
             ),
           ),
           GestureDetector(
-            onTap: widget.show,
+            // onTap: widget.show,
             child: Text(
               "Sign up",
               style: TextStyle(

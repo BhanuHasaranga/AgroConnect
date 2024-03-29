@@ -1,4 +1,5 @@
-import 'package:agro_connect/screens/splash_screen.dart';
+import 'package:agro_connect/screens/choose_path_screen.dart';
+// import 'package:agro_connect/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ import 'firebase_options.dart';
 Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const MyApp());
 }
 
@@ -20,9 +21,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,      ),
-      home: const Splash(),
+        useMaterial3: true,
+      ),
+      // home: const Splash(),
+      home: ChoosePathScreen(),
     );
   }
 }
-

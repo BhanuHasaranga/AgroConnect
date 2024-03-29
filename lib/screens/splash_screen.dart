@@ -1,7 +1,8 @@
-import 'package:agro_connect/auth/auth_screen.dart';
 // import 'package:agro_connect/screens/login_screen.dart';
 // import 'package:agro_connect/screens/start_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'login_screen.dart';
 // import 'package:agro_connect/screens/home.dart';
 
 class Splash extends StatefulWidget {
@@ -60,10 +61,9 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => Auth(),
+        builder: (context) => Login(),
       ),
     );
-
   }
 
   @override

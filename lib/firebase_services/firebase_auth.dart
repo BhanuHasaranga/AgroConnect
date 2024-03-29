@@ -10,7 +10,7 @@ class Authentication {
     required String email,
     required String password,
     required String passwordConfirm,
-    required File? profilePic,
+    required File profilePic,
   }) async {
     try {
       if (username.isNotEmpty && email.isNotEmpty && password.isNotEmpty) {
