@@ -4,8 +4,8 @@ import 'package:agro_connect/util/excption.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Authentication {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<void> Signup({
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<void> signUp({
     required String username,
     required String email,
     required String password,

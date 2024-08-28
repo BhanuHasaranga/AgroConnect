@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:agro_connect/screens/landing_screen.dart';
 
 class Login extends StatefulWidget {
   // final VoidCallback show;
   // const Login({super.key});
-   const Login({Key? key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -23,21 +24,21 @@ class _LoginState extends State<Login> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(height: 120),
+              const SizedBox(height: 120),
               Center(
                 child: Image.asset(
                   'lib/assets/logo.png',
                   scale: 3,
                 ),
               ),
-              SizedBox(height: 120),
+              const SizedBox(height: 120),
               CustomTextField(
                 email,
                 Icons.email,
                 'Email',
                 email_F,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               CustomTextField(
@@ -46,18 +47,18 @@ class _LoginState extends State<Login> {
                 'Password',
                 password_F,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ForgotPassword(),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              SubmitButton('Log In'),
-              SizedBox(
+              SubmitButton(context, 'Log In'),
+              const SizedBox(
                 height: 10,
               ),
-              LoginOrSignup()
+              LoginOrSignup("Don't you have account?", "Sign up")
             ],
           ),
         ),
@@ -65,14 +66,14 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget LoginOrSignup() {
+  Widget LoginOrSignup(String hintText, String option) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Don't you have account?",
+            hintText,
             style: TextStyle(
               fontSize: 13,
               color: Colors.grey,
@@ -80,9 +81,9 @@ class _LoginState extends State<Login> {
             ),
           ),
           GestureDetector(
-            // onTap: widget.show,
+            onTap: () {},
             child: Text(
-              "Sign up",
+              option,
               style: TextStyle(
                 fontSize: 15,
                 color: Color(0xFF4E7D4C),
@@ -95,29 +96,43 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget SubmitButton(String type) {
+  Widget SubmitButton(BuildContext context, String type) {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
       height: 44,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Color(0xFF4E7D4C),
+        color: const Color(0xFF4E7D4C),
       ),
-      child: Text(
-        type,
-        style: TextStyle(
-          fontSize: 23,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF4E7D4C),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LandingScreen()),
+          );
+        },
+        child: Text(
+          type,
+          style: const TextStyle(
+            fontSize: 23,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
   }
 
   Widget ForgotPassword() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: Text(
         'forgot your password?',
         style: TextStyle(
@@ -138,28 +153,29 @@ class _LoginState extends State<Login> {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
       child: TextField(
-        style: TextStyle(fontSize: 18, color: Colors.black),
+        style: const TextStyle(fontSize: 18, color: Colors.black),
         controller: controller,
         focusNode: focusNode,
         decoration: InputDecoration(
             border: InputBorder.none,
             hintText: type,
-            hintStyle: TextStyle(color: Colors.grey),
+            hintStyle: const TextStyle(color: Colors.grey),
             prefixIcon: Icon(
               icon,
-              color: focusNode.hasFocus ? Color(0xFF4E7D4C) : Colors.grey,
+              color: focusNode.hasFocus ? const Color(0xFF4E7D4C) : Colors.grey,
             ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.grey,
                 width: 2,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0xFF4E7D4C),
                 width: 2,
               ),

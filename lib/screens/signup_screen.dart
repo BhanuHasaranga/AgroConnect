@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:agro_connect/firebase_services/firebase_auth.dart';
-import 'package:agro_connect/util/dialog.dart';
+// import 'package:agro_connect/util/dialog.dart';
 import 'package:agro_connect/util/excption.dart';
 import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +17,13 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final username = TextEditingController();
-  FocusNode username_F = FocusNode();
+  FocusNode usernameF = FocusNode();
   final email = TextEditingController();
-  FocusNode email_F = FocusNode();
+  FocusNode emailF = FocusNode();
   final password = TextEditingController();
-  FocusNode password_F = FocusNode();
+  FocusNode passwordF = FocusNode();
   final passwordConfirm = TextEditingController();
-  FocusNode passwordConfirm_F = FocusNode();
+  FocusNode passwordConfirmF = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -34,57 +34,57 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               Center(
                 child: Image.asset(
                   'lib/assets/logo.png',
                   scale: 3,
                 ),
               ),
-              SizedBox(height: 35),
-              Avatar(size: 35),
-              SizedBox(height: 35),
-              CustomTextField(
+              const SizedBox(height: 35),
+              const Avatar(size: 35),
+              const SizedBox(height: 35),
+              customTextField(
                 username,
                 Icons.person,
                 'Username',
-                username_F,
+                usernameF,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              CustomTextField(
+              customTextField(
                 email,
                 Icons.email,
                 'Email',
-                email_F,
+                emailF,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              CustomTextField(
+              customTextField(
                 password,
                 Icons.lock,
                 'Password',
-                password_F,
+                passwordF,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              CustomTextField(
+              customTextField(
                 passwordConfirm,
                 Icons.lock,
                 'Confirm Password',
-                passwordConfirm_F,
+                passwordConfirmF,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              SubmitButton('Sign Up'),
-              SizedBox(
+              submitButton('Sign Up'),
+              const SizedBox(
                 height: 10,
               ),
-              ToSignup()
+              toSignup()
             ],
           ),
         ),
@@ -92,13 +92,13 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget ToSignup() {
+  Widget toSignup() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          const Text(
             "Do you have account?",
             style: TextStyle(
               fontSize: 13,
@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
           ),
           GestureDetector(
             // onTap: widget.show,
-            child: Text(
+            child: const Text(
               "Log In",
               style: TextStyle(
                 fontSize: 15,
@@ -122,18 +122,29 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget SubmitButton(String type) {
+  void dialogBuilder(BuildContext context, String message) {
+    // Use the provided context to show the dialog
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(message),
+        // ... other dialog options
+      ),
+    );
+  }
+
+  Widget submitButton(String type) {
     return InkWell(
       onTap: () async {
         try {
-          await Authentication().Signup(
+          await Authentication().signUp(
               username: username.text,
               email: email.text,
               password: password.text,
               passwordConfirm: passwordConfirm.text,
               profilePic: File(''));
         } on exceptions catch (e) {
-          print(e.message);
+          // ignore: use_build_context_synchronously
           dialogBuilder(context, e.message);
         }
       },
@@ -143,11 +154,11 @@ class _SignUpState extends State<SignUp> {
         height: 44,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color(0xFF4E7D4C),
+          color: const Color(0xFF4E7D4C),
         ),
         child: Text(
           type,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 23,
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -157,9 +168,9 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget ForgotPassword() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+  Widget forgotPassword() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: Text(
         'forgot your password?',
         style: TextStyle(
@@ -171,7 +182,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget CustomTextField(
+  Widget customTextField(
     TextEditingController controller,
     IconData icon,
     String type,
@@ -180,28 +191,29 @@ class _SignUpState extends State<SignUp> {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
       child: TextField(
-        style: TextStyle(fontSize: 18, color: Colors.black),
+        style: const TextStyle(fontSize: 18, color: Colors.black),
         controller: controller,
         focusNode: focusNode,
         decoration: InputDecoration(
             border: InputBorder.none,
             hintText: type,
-            hintStyle: TextStyle(color: Colors.grey),
+            hintStyle: const TextStyle(color: Colors.grey),
             prefixIcon: Icon(
               icon,
-              color: focusNode.hasFocus ? Color(0xFF4E7D4C) : Colors.grey,
+              color: focusNode.hasFocus ? const Color(0xFF4E7D4C) : Colors.grey,
             ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.grey,
                 width: 2,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0xFF4E7D4C),
                 width: 2,
               ),
