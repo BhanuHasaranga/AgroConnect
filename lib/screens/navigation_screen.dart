@@ -17,41 +17,61 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: IndexedStack(
-          index: _currentIndex,
-          children: const [
-            LandingScreen(),
-            AskScreen(),
-            SavedContentScreen(),
-            UserProfileScreen(),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: const [
+          LandingScreen(),
+          AskScreen(),
+          SavedContentScreen(),
+          UserProfileScreen(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              color: Color(0xFF373737),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat_outlined),
+            label: "home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.chat_outlined,
+              color: Color(0xFF373737),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.bookmarks_outlined),
+            label: "ask",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.bookmarks_outlined,
+              color: Color(0xFF373737),
             ),
-            BottomNavigationBarItem(
-              icon: CircleAvatar(
-                radius: 15,
-                backgroundImage: AssetImage(
-                  'lib/assets/user.png',
-                ),
+            label: "saved",
+          ),
+          BottomNavigationBarItem(
+            icon: CircleAvatar(
+              radius: 15,
+              backgroundImage: AssetImage(
+                'lib/assets/user.png',
               ),
             ),
-          ],
-        ));
+            label: "profile",
+          ),
+        ],
+        unselectedLabelStyle: TextStyle(
+          color: Color(0xFF373737),
+        ),
+        selectedLabelStyle: TextStyle(color: Colors.green),
+        selectedIconTheme: IconThemeData(color: Colors.green),
+        
+      ),
+    );
   }
 }
