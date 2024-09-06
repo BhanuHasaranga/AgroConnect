@@ -1,3 +1,4 @@
+import 'package:agro_connect/screens/navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:agro_connect/screens/landing_screen.dart';
 
@@ -115,7 +116,7 @@ class _LoginState extends State<Login> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const LandingScreen()),
+            MaterialPageRoute(builder: (context) => const Navigation()),
           );
         },
         child: Text(
