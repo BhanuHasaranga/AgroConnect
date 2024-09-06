@@ -99,7 +99,6 @@ class AskScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const NavBar(),
     );
   }
 }

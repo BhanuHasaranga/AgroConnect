@@ -54,7 +54,6 @@ class SavedContentScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const NavBar(),
     );
   }
 }

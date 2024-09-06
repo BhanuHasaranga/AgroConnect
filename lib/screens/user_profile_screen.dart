@@ -225,7 +225,6 @@ class UserProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const NavBar(),
     );
   }
 }
