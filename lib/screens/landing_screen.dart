@@ -2,7 +2,6 @@ import 'package:agro_connect/screens/create_news_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/contentCategories.dart';
-import '../widgets/navBar.dart';
 import '../widgets/MyAppBar.dart';
 import '../widgets/newsCard.dart';
 import '../widgets/postSomethingField.dart';
@@ -14,7 +13,7 @@ class LandingScreen extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         child: Column(
           children: [
             const PostSomethingField(
@@ -60,7 +59,6 @@ class LandingScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const NavBar(),
     );
   }
 }
