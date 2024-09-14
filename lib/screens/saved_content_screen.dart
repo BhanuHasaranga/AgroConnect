@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../widgets/contentCategories.dart';
 import '../widgets/myAppBar.dart';
-import '../widgets/navBar.dart';
 import '../widgets/newsCard.dart';
 
 class SavedContentScreen extends StatelessWidget {
@@ -12,7 +11,7 @@ class SavedContentScreen extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
         child: Column(
           children: [
             const ContentCategories(
