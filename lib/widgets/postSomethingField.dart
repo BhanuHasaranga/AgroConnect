@@ -1,5 +1,5 @@
+import 'package:agro_connect/screens/user_profile_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'userAvatar.dart';
 
 class PostSomethingField extends StatelessWidget {
@@ -15,9 +15,18 @@ class PostSomethingField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Avatar(
-          size: 15,
-          src: 'lib/assets/user.png',
+        GestureDetector(
+          child: Avatar(
+            size: 15,
+            src: 'lib/assets/user.png',
+            
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UserProfileScreen()),
+            );
+          },
         ),
         Expanded(
           flex: 1,

@@ -1,8 +1,5 @@
 import 'package:agro_connect/screens/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/myAppBar.dart';
-import '../widgets/navBar.dart';
 import '../widgets/newsCard.dart';
 
 class UserProfileScreen extends StatelessWidget {
