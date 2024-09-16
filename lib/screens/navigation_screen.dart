@@ -1,7 +1,9 @@
+import 'package:agro_connect/navigators.dart';
 import 'package:agro_connect/screens/ask_screen.dart';
 import 'package:agro_connect/screens/landing_screen.dart';
 import 'package:agro_connect/screens/saved_content_screen.dart';
 import 'package:agro_connect/screens/user_profile_screen.dart';
+import 'package:agro_connect/widgets/myAppBar.dart';
 import 'package:agro_connect/widgets/navBar.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,19 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(),
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text("item1"),
+            ),
+            ListTile(
+              title: Text("item2"),
+            ),
+          ],
+        ),
+      ),
       body: IndexedStack(
         index: _currentIndex,
         children: const [
@@ -27,6 +42,7 @@ class _NavigationState extends State<Navigation> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        key: bottomNavigatorKey,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -70,7 +86,7 @@ class _NavigationState extends State<Navigation> {
         ),
         selectedLabelStyle: TextStyle(color: Colors.green),
         selectedIconTheme: IconThemeData(color: Colors.green),
-        
+        showSelectedLabels: false,
       ),
     );
   }

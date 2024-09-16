@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 final GlobalKey<NavigatorState> globalNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'Global');
+final GlobalKey<NavigatorState> bottomNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'BottomNavigator');
 final GlobalKey<NavigatorState> landingNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'LandingPage');
 final GlobalKey<NavigatorState> askNavigatorKey =
