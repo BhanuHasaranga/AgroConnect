@@ -5,7 +5,6 @@ import 'package:agro_connect/screens/login_screen.dart';
 import 'package:agro_connect/screens/saved_content_screen.dart';
 import 'package:agro_connect/screens/user_profile_screen.dart';
 import 'package:agro_connect/widgets/myAppBar.dart';
-import 'package:agro_connect/widgets/navBar.dart';
 import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {

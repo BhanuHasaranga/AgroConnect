@@ -1,8 +1,6 @@
 import 'package:agro_connect/screens/create_news_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../widgets/contentCategories.dart';
-import '../widgets/MyAppBar.dart';
 import '../widgets/newsCard.dart';
 import '../widgets/postSomethingField.dart';
 
