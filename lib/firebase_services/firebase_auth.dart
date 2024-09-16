@@ -7,6 +7,7 @@ class Authentication {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
+  //signUp method
   Future<User?> signUp({
     required String username,
     required String email,
@@ -73,6 +74,30 @@ class Authentication {
       return await snapshot.ref.getDownloadURL(); // Return the image URL
     } catch (e) {
       throw exceptions("Failed to upload profile picture: ${e.toString()}");
+    }
+  }
+
+  //login
+  Future<User?> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password.trim(),
+      );
+      return userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw exceptions("No user found for that email.");
+      } else if (e.code == 'wrong-password') {
+        throw exceptions("Wrong password provided.");
+      } else {
+        throw exceptions(e.message ?? "An unknown error occurred.");
+      }
+    } catch (e) {
+      throw exceptions("An unexpected error occurred: ${e.toString()}");
     }
   }
 }

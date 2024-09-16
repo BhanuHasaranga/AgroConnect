@@ -1,10 +1,10 @@
+import 'package:agro_connect/firebase_services/firebase_auth.dart';
 import 'package:agro_connect/screens/navigation_screen.dart';
 import 'package:agro_connect/screens/signup_screen.dart';
+import 'package:agro_connect/util/excption.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
-  // final VoidCallback show;
-  // const Login({super.key});
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -12,14 +12,27 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final email = TextEditingController();
-  FocusNode email_F = FocusNode();
-  final password = TextEditingController();
-  FocusNode password_F = FocusNode();
+  final Authentication _auth = Authentication(); // Authentication instance
+
+  final TextEditingController email = TextEditingController();
+  FocusNode emailF = FocusNode();
+  final TextEditingController password = TextEditingController();
+  FocusNode passwordF = FocusNode();
+
+  // Function to show error messages in dialog
+  void dialogBuilder(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(message),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -37,7 +50,7 @@ class _LoginState extends State<Login> {
                 email,
                 Icons.email,
                 'Email',
-                email_F,
+                emailF,
               ),
               const SizedBox(
                 height: 15,
@@ -46,7 +59,7 @@ class _LoginState extends State<Login> {
                 password,
                 Icons.lock,
                 'Password',
-                password_F,
+                passwordF,
               ),
               const SizedBox(
                 height: 10,
@@ -102,6 +115,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+  // Submit button with Firebase login functionality
   Widget SubmitButton(BuildContext context, String type) {
     return Container(
       alignment: Alignment.center,
@@ -118,11 +132,22 @@ class _LoginState extends State<Login> {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const Navigation()),
-          );
+        onPressed: () async {
+          try {
+            // Call login function from the Authentication class
+            await _auth.login(
+              email: email.text,
+              password: password.text,
+            );
+
+            // Navigate to Navigation screen if successful
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Navigation()),
+            );
+          } on exceptions catch (e) {
+            dialogBuilder(context, e.message);
+          }
         },
         child: Text(
           type,
