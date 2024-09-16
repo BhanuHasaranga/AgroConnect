@@ -6,7 +6,7 @@ class Avatar extends StatelessWidget {
   const Avatar({
     Key? key,
     required this.size,
-    this.src,
+    this.src, FileImage? image,
   }) : super(key: key);
 
   @override

@@ -1,15 +1,14 @@
 import 'dart:io';
 
-import 'package:agro_connect/firebase_services/firebase_auth.dart';
+import 'package:agro_connect/firebase_services/firebase_auth.dart'; // Assuming this is your Firebase authentication service
 import 'package:agro_connect/screens/login_screen.dart';
-// import 'package:agro_connect/util/dialog.dart';
+import 'package:agro_connect/screens/start_screen.dart';
 import 'package:agro_connect/util/excption.dart';
 import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUp extends StatefulWidget {
-  // final VoidCallback show;
-  // const SignUp({super.key});
   const SignUp({Key? key}) : super(key: key);
 
   @override
@@ -17,19 +16,35 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final username = TextEditingController();
-  FocusNode usernameF = FocusNode();
-  final email = TextEditingController();
-  FocusNode emailF = FocusNode();
-  final password = TextEditingController();
-  FocusNode passwordF = FocusNode();
-  final passwordConfirm = TextEditingController();
-  FocusNode passwordConfirmF = FocusNode();
+  final Authentication _auth =
+      Authentication(); // Use your correct Authentication class
+
+  final TextEditingController username = TextEditingController();
+  final FocusNode usernameF = FocusNode();
+  final TextEditingController email = TextEditingController();
+  final FocusNode emailF = FocusNode();
+  final TextEditingController password = TextEditingController();
+  final FocusNode passwordF = FocusNode();
+  final TextEditingController passwordConfirm = TextEditingController();
+  final FocusNode passwordConfirmF = FocusNode();
+
+  File? profilePic;
+
+  // Function to pick a profile picture from gallery
+  Future<void> pickProfilePicture() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        profilePic = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -43,7 +58,16 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               const SizedBox(height: 35),
-              const Avatar(size: 35),
+              GestureDetector(
+                onTap: pickProfilePicture,
+                child: Avatar(
+                  size: 35,
+                  image: profilePic != null
+                      ? FileImage(
+                          profilePic!) // Display selected profile picture
+                      : null,
+                ),
+              ),
               const SizedBox(height: 35),
               customTextField(
                 username,
@@ -51,41 +75,31 @@ class _SignUpState extends State<SignUp> {
                 'Username',
                 usernameF,
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               customTextField(
                 email,
                 Icons.email,
                 'Email',
                 emailF,
               ),
-              const SizedBox(
-                height: 15,
-              ),
+              const SizedBox(height: 15),
               customTextField(
                 password,
                 Icons.lock,
                 'Password',
                 passwordF,
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               customTextField(
                 passwordConfirm,
                 Icons.lock,
                 'Confirm Password',
                 passwordConfirmF,
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               submitButton('Sign Up'),
-              const SizedBox(
-                height: 10,
-              ),
-              toSignup()
+              const SizedBox(height: 10),
+              toSignup(),
             ],
           ),
         ),
@@ -93,6 +107,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+  // Navigation to Login screen
   Widget toSignup() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -100,7 +115,7 @@ class _SignUpState extends State<SignUp> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            "Do you have account?",
+            "Already have an account?",
             style: TextStyle(
               fontSize: 13,
               color: Colors.grey,
@@ -128,29 +143,45 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+  // Dialog for error messages
   void dialogBuilder(BuildContext context, String message) {
-    // Use the provided context to show the dialog
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         content: Text(message),
-        // ... other dialog options
       ),
     );
   }
 
+  // Submit button to trigger sign-up
   Widget submitButton(String type) {
     return InkWell(
       onTap: () async {
         try {
-          await Authentication().signUp(
-              username: username.text,
-              email: email.text,
-              password: password.text,
-              passwordConfirm: passwordConfirm.text,
-              profilePic: File(''));
+          // Call signUp method from Authentication class
+          await _auth.signUp(
+            username: username.text,
+            email: email.text,
+            password: password.text,
+            passwordConfirm: passwordConfirm.text,
+            profilePic: profilePic ?? null, // Pass profilePic or null
+          );
+
+          // Show success message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Sign Up successful!"),
+              backgroundColor: Colors.green,
+            ),
+          );
+
+          // Navigate to ChoosePathScreen after success
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const StartScreen()),
+          );
         } on exceptions catch (e) {
-          // ignore: use_build_context_synchronously
+          // Show error message in dialog if sign up fails
           dialogBuilder(context, e.message);
         }
       },
@@ -174,20 +205,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget forgotPassword() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text(
-        'forgot your password?',
-        style: TextStyle(
-          fontSize: 13,
-          color: Color(0xFF4E7D4C),
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
+  // Custom text field for input
   Widget customTextField(
     TextEditingController controller,
     IconData icon,
@@ -201,29 +219,30 @@ class _SignUpState extends State<SignUp> {
         controller: controller,
         focusNode: focusNode,
         decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: type,
-            hintStyle: const TextStyle(color: Colors.grey),
-            prefixIcon: Icon(
-              icon,
-              color: focusNode.hasFocus ? const Color(0xFF4E7D4C) : Colors.grey,
+          border: InputBorder.none,
+          hintText: type,
+          hintStyle: const TextStyle(color: Colors.grey),
+          prefixIcon: Icon(
+            icon,
+            color: focusNode.hasFocus ? const Color(0xFF4E7D4C) : Colors.grey,
+          ),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+              width: 2,
             ),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(
-                color: Colors.grey,
-                width: 2,
-              ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: Color(0xFF4E7D4C),
+              width: 2,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(
-                color: Color(0xFF4E7D4C),
-                width: 2,
-              ),
-            )),
+          ),
+        ),
       ),
     );
   }
