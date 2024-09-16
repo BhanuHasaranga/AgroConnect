@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:agro_connect/firebase_services/firebase_auth.dart';
+import 'package:agro_connect/screens/login_screen.dart';
 // import 'package:agro_connect/util/dialog.dart';
 import 'package:agro_connect/util/excption.dart';
 import 'package:agro_connect/widgets/userAvatar.dart';
@@ -107,7 +108,12 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           GestureDetector(
-            // onTap: widget.show,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Login()),
+              );
+            },
             child: const Text(
               "Log In",
               style: TextStyle(
