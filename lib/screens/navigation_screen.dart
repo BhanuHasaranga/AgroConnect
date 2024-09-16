@@ -21,13 +21,35 @@ class _NavigationState extends State<Navigation> {
     return Scaffold(
       appBar: MyAppBar(),
       endDrawer: Drawer(
-        child: ListView(
+        child: Column(
           children: [
-            ListTile(
-              title: Text("item1"),
+            Expanded(
+              // This allows the list items to take up available space
+              child: ListView(
+                children: const [
+                  ListTile(
+                    title: Text("item1"),
+                  ),
+                  ListTile(
+                    title: Text("item2"),
+                  ),
+                ],
+              ),
             ),
-            ListTile(
-              title: Text("item2"),
+            // Logout button placed at the bottom
+            const Divider(), // Optional: A divider to separate items from the logout button
+            Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding
+              child: ListTile(
+                leading: Icon(Icons.logout), // Add an icon for logout
+                title: Text('Logout'),
+                onTap: () {
+                  // Handle logout logic here
+                  // For example, you can navigate to a login screen or clear user session
+                  //Navigator.of(context).pop(); // Close the drawer
+                  // Add your logout logic
+                },
+              ),
             ),
           ],
         ),
