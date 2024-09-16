@@ -9,7 +9,6 @@ class SavedContentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
         child: Column(

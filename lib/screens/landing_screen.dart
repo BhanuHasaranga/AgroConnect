@@ -11,7 +11,6 @@ class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         child: Column(

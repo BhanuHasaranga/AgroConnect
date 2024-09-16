@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/communityCircle.dart';
 import '../widgets/contentCategories.dart';
-import '../widgets/myAppBar.dart';
+// import '../widgets/myAppBar.dart';
 import '../widgets/postSomethingField.dart';
 
 class AskScreen extends StatelessWidget {
@@ -12,7 +12,6 @@ class AskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         child: Column(
