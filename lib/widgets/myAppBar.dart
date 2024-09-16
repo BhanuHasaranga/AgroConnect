@@ -1,3 +1,4 @@
+import 'package:agro_connect/screens/notification_screen.dart';
 import 'package:agro_connect/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           iconSize: 25,
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const NotificationScreen()),
+            );
+          },
           icon: const Icon(Icons.notifications_outlined),
           iconSize: 25,
         ),
