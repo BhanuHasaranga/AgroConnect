@@ -1,6 +1,6 @@
 import 'package:agro_connect/screens/navigation_screen.dart';
+import 'package:agro_connect/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:agro_connect/screens/landing_screen.dart';
 
 class Login extends StatefulWidget {
   // final VoidCallback show;
@@ -82,7 +82,12 @@ class _LoginState extends State<Login> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignUp()),
+              );
+            },
             child: Text(
               option,
               style: TextStyle(
