@@ -31,31 +31,33 @@ class _CreateNewsState extends State<CreateNews> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Column(
-          children: [
-            _buildUserDetails(),
-            const SizedBox(height: 15),
-            _buildTextField(
-              label: 'Write Your headline here',
-              maxLength: 50,
-              onChanged: (value) => setState(() => headline = value),
-            ),
-            const SizedBox(height: 10),
-            _buildTextField(
-              label: 'Write your News!',
-              maxLength: 200,
-              maxLines: 5,
-              onChanged: (value) => setState(() => news = value),
-            ),
-            const SizedBox(height: 10),
-            _buildImagePicker(),
-            const SizedBox(height: 20),
-            _buildImageGrid(),
-            const SizedBox(height: 20),
-            _buildPostButton(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Column(
+            children: [
+              _buildUserDetails(),
+              const SizedBox(height: 15),
+              _buildTextField(
+                label: 'Write Your headline here',
+                maxLength: 50,
+                onChanged: (value) => setState(() => headline = value),
+              ),
+              const SizedBox(height: 10),
+              _buildTextField(
+                label: 'Write your News!',
+                maxLength: 200,
+                maxLines: 5,
+                onChanged: (value) => setState(() => news = value),
+              ),
+              const SizedBox(height: 10),
+              _buildImagePicker(),
+              const SizedBox(height: 20),
+              _buildImageGrid(),
+              const SizedBox(height: 20),
+              _buildPostButton(),
+            ],
+          ),
         ),
       ),
     );
