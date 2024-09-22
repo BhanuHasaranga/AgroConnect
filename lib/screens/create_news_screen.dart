@@ -1,3 +1,4 @@
+//create news screen
 import '../widgets/imagePicker.dart';
 
 import 'dart:io';
