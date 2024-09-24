@@ -1,6 +1,5 @@
 import 'package:agro_connect/firebase_services/user_service.dart';
 import 'package:agro_connect/screens/forgot_password_screen.dart';
-import 'package:agro_connect/screens/landing_screen.dart';
 import 'package:agro_connect/screens/navigation_screen.dart';
 import 'package:agro_connect/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
