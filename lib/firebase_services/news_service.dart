@@ -69,18 +69,18 @@ class NewsService {
     }
   }
 
-  static Future<News> getEventById(String id) async {
+  static Future<News> getNewstById(String id) async {
     try {
       print(id);
       final DocumentSnapshot userSnapshot =
-          await FirebaseFirestore.instance.collection('event').doc(id).get();
+          await FirebaseFirestore.instance.collection('news').doc(id).get();
 
-      final Map<String, dynamic> eventData =
+      final Map<String, dynamic> newsData =
           userSnapshot.data() as Map<String, dynamic>;
 
-      final News event = News.fromMap(eventData);
+      final News news = News.fromMap(newsData);
 
-      return event;
+      return news;
     } catch (e) {
       print(e);
       throw e.toString();
