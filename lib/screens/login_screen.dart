@@ -1,5 +1,7 @@
+import 'package:agro_connect/auth/auth_page.dart';
 import 'package:agro_connect/firebase_services/firebase_auth.dart';
-import 'package:agro_connect/screens/navigation_screen.dart';
+import 'package:agro_connect/firebase_services/user_service.dart';
+import 'package:agro_connect/screens/forgot_password_screen.dart';
 import 'package:agro_connect/screens/signup_screen.dart';
 import 'package:agro_connect/util/excption.dart';
 import 'package:flutter/material.dart';
@@ -134,18 +136,20 @@ class _LoginState extends State<Login> {
         ),
         onPressed: () async {
           try {
-            // Call login function from the Authentication class
-            await _auth.login(
-              email: email.text,
-              password: password.text,
+            // Call userLogin function from UserService
+            await UserService.userLogin(
+              context,
+              email.text, // Pass the email text field value
+              password.text, // Pass the password text field value
             );
 
-            // Navigate to Navigation screen if successful
+            // Navigate to AuthPage screen if successful
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Navigation()),
+              MaterialPageRoute(builder: (context) => const AuthPage()),
             );
-          } on exceptions catch (e) {
+          } on AuthFailure catch (e) {
+            // Handle the exception and show a dialog
             dialogBuilder(context, e.message);
           }
         },
@@ -162,14 +166,22 @@ class _LoginState extends State<Login> {
   }
 
   Widget ForgotPassword() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text(
-        'forgot your password?',
-        style: TextStyle(
-          fontSize: 13,
-          color: Color(0xFF4E7D4C),
-          fontWeight: FontWeight.bold,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+          );
+        },
+        child: Text(
+          'forgot your password?',
+          style: TextStyle(
+            fontSize: 13,
+            color: Color(0xFF4E7D4C),
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
