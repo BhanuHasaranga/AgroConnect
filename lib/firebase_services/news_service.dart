@@ -58,7 +58,7 @@ class NewsService {
   }
 
   static Stream<List<News>> listenGetAllNewses() async* {
-    final newsCollection = FirebaseFirestore.instance.collection('news');
+    final newsCollection = FirebaseFirestore.instance.collection('News');
     try {
       yield* newsCollection.snapshots().map((snapshot) {
         return snapshot.docs.map((doc) => News.fromMap(doc.data())).toList();

@@ -27,8 +27,9 @@ class LandingScreen extends StatelessWidget {
                 category2: 'Trending',
                 category3: 'All',
               ),
-              FutureBuilder<List<News>>(
-                future: NewsService.getAllNewses(), // Fetch news from Firebase
+              StreamBuilder<List<News>>(
+                stream: NewsService
+                    .listenGetAllNewses(), // Fetch news from Firebase
                 builder:
                     (BuildContext context, AsyncSnapshot<List<News>> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -65,7 +66,8 @@ class LandingScreen extends StatelessWidget {
                                 publisherImg:
                                     'lib/assets/user.png', // Placeholder for the publisher image
                                 publisherName: userName, // Display username
-                                publishedTime: 'Just now', // Or format `news.time`
+                                publishedTime:
+                                    'Just now', // Or format `news.time`
                                 img: news.imageUrl?.isNotEmpty == true
                                     ? news.imageUrl!
                                     : 'lib/assets/gardening 1.png', // Use network or fallback to asset
