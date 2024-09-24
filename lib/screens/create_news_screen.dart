@@ -56,7 +56,8 @@ class _CreateNewsState extends State<CreateNews> {
               _buildImagePicker(),
               const SizedBox(height: 20),
               _buildImageGrid(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 5),
+              _celenderButton(),
               _buildPostButton(),
             ],
           ),
@@ -245,6 +246,37 @@ class _CreateNewsState extends State<CreateNews> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _celenderButton() {
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {
+              // Show the calendar
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              backgroundColor: const Color(0xFF4E7D4C),
+              padding: const EdgeInsets.all(0),
+              fixedSize: const Size.fromHeight(10),
+            ),
+            child: const Text(
+              'Select a Date',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
               ),

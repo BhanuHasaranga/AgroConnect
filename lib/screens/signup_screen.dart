@@ -1,7 +1,7 @@
 import 'dart:io';
+import 'package:agro_connect/auth/auth_page.dart';
 import 'package:agro_connect/firebase_services/user_service.dart';
 import 'package:agro_connect/screens/login_screen.dart';
-import 'package:agro_connect/screens/start_screen.dart';
 import 'package:agro_connect/widgets/userAvatar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -71,7 +71,7 @@ class _SignUpState extends State<SignUp> {
         );
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const StartScreen()),
+          MaterialPageRoute(builder: (context) => const AuthPage()),
         );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(

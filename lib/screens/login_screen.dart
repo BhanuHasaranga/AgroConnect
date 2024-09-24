@@ -1,6 +1,7 @@
-import 'package:agro_connect/auth/auth_page.dart';
 import 'package:agro_connect/firebase_services/user_service.dart';
 import 'package:agro_connect/screens/forgot_password_screen.dart';
+import 'package:agro_connect/screens/landing_screen.dart';
+import 'package:agro_connect/screens/navigation_screen.dart';
 import 'package:agro_connect/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -143,7 +144,7 @@ class _LoginState extends State<Login> {
             // Navigate to AuthPage screen if successful
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AuthPage()),
+              MaterialPageRoute(builder: (context) => const Navigation()),
             );
           } on AuthFailure catch (e) {
             // Handle the exception and show a dialog

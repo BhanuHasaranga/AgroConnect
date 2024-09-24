@@ -1,9 +1,9 @@
 import 'package:agro_connect/firebase_services/user_service.dart';
 import 'package:agro_connect/screens/email_verification_screen.dart';
+import 'package:agro_connect/screens/landing_screen.dart';
 import 'package:agro_connect/screens/login_screen.dart';
 import 'package:agro_connect/screens/navigation_screen.dart';
 import 'package:flutter/material.dart';
-
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
