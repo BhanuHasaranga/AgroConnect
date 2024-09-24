@@ -1,6 +1,7 @@
 //create_news_screen.dart
 import 'dart:io';
 import 'package:agro_connect/firebase_services/news_service.dart';
+import 'package:agro_connect/firebase_services/user_service.dart';
 import 'package:agro_connect/widgets/imagePicker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -198,12 +199,13 @@ class _CreateNewsState extends State<CreateNews> {
               // Call NewsService to add the news to Firebase
               if (headline.isNotEmpty && newsContent.isNotEmpty) {
                 try {
+                  String userId = UserService.getUserId();
                   String? imageUrl = selectedImages.isNotEmpty
                       ? selectedImages[0]!.path
                       : null;
 
                   await NewsService.addNews(
-                    '12345', // Example userId, replace with actual user ID
+                    userId,
                     headline,
                     newsContent,
                     imageUrl,
