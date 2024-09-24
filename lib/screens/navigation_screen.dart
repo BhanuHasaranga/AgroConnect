@@ -1,4 +1,5 @@
 // import 'package:agro_connect/navigators.dart';
+import 'package:agro_connect/firebase_services/user_service.dart';
 import 'package:agro_connect/screens/ask_screen.dart';
 import 'package:agro_connect/screens/landing_screen.dart';
 import 'package:agro_connect/screens/login_screen.dart';
@@ -44,14 +45,11 @@ class _NavigationState extends State<Navigation> {
                 leading: Icon(Icons.logout), // Add an icon for logout
                 title: Text('Logout'),
                 onTap: () {
-                  // Handle logout logic here
-                  // For example, you can navigate to a login screen or clear user session
-                  //Navigator.of(context).pop(); // Close the drawer
+                  UserService.userLogOut();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Login()),
                   );
-                  // Add your logout logic
                 },
               ),
             ),
