@@ -207,22 +207,20 @@ class _AskQuestionState extends State<AskQuestion> {
   Future<void> _selectImage() async {
     if (selectedImages.length >= 4) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: const Text('You can\'t select more than 4 images'),
         ),
       );
       return;
     }
 
-    XFile? image = await CustomImagePicker.showImagePickerDialog(context);
-    if (image != null) {
-      setState(() {
-        selectedImages.add(image);
-        print('Selected Images:');
-        for (var i = 0; i < selectedImages.length; i++) {
-          print(selectedImages[i]?.path);
-        }
-      });
-    }
+    XFile? image = await CustomImagePicker.showImagePickerDialog(context,
+        (XFile? selectedImage) {
+      if (selectedImage != null) {
+        setState(() {
+          selectedImages.add(selectedImage);
+        });
+      }
+    });
   }
 }

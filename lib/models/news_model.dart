@@ -1,3 +1,4 @@
+//news_model
 import 'dart:convert';
 
 class News {

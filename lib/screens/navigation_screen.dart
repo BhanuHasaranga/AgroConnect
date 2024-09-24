@@ -1,4 +1,4 @@
-import 'package:agro_connect/navigators.dart';
+// import 'package:agro_connect/navigators.dart';
 import 'package:agro_connect/screens/ask_screen.dart';
 import 'package:agro_connect/screens/landing_screen.dart';
 import 'package:agro_connect/screens/login_screen.dart';
@@ -68,7 +68,7 @@ class _NavigationState extends State<Navigation> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        key: bottomNavigatorKey,
+        // key: bottomNavigatorKey,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {

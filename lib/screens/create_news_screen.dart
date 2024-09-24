@@ -1,7 +1,7 @@
-//create news screen
-import '../widgets/imagePicker.dart';
-
+//create_news_screen.dart
 import 'dart:io';
+import 'package:agro_connect/firebase_services/news_service.dart';
+import 'package:agro_connect/widgets/imagePicker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -15,7 +15,7 @@ class CreateNews extends StatefulWidget {
 
 class _CreateNewsState extends State<CreateNews> {
   String headline = "";
-  String news = "";
+  String newsContent = "";
   List<XFile?> selectedImages = [];
 
   @override
@@ -40,16 +40,16 @@ class _CreateNewsState extends State<CreateNews> {
               _buildUserDetails(),
               const SizedBox(height: 15),
               _buildTextField(
-                label: 'Write Your headline here',
+                label: 'Write Your Headline Here',
                 maxLength: 50,
                 onChanged: (value) => setState(() => headline = value),
               ),
               const SizedBox(height: 10),
               _buildTextField(
-                label: 'Write your News!',
+                label: 'Write Your News!',
                 maxLength: 200,
                 maxLines: 5,
-                onChanged: (value) => setState(() => news = value),
+                onChanged: (value) => setState(() => newsContent = value),
               ),
               const SizedBox(height: 10),
               _buildImagePicker(),
@@ -117,7 +117,18 @@ class _CreateNewsState extends State<CreateNews> {
 
   Widget _buildImagePicker() {
     return GestureDetector(
-      onTap: _selectImage,
+      onTap: () async {
+        XFile? image = await CustomImagePicker.showImagePickerDialog(
+          context,
+          (XFile? selectedImage) {
+            if (selectedImage != null) {
+              setState(() {
+                selectedImages.add(selectedImage);
+              });
+            }
+          },
+        );
+      },
       child: DottedBorder(
         dashPattern: [8, 8],
         radius: const Radius.circular(5),
@@ -183,7 +194,41 @@ class _CreateNewsState extends State<CreateNews> {
       children: [
         Expanded(
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              // Call NewsService to add the news to Firebase
+              if (headline.isNotEmpty && newsContent.isNotEmpty) {
+                try {
+                  String? imageUrl = selectedImages.isNotEmpty
+                      ? selectedImages[0]!.path
+                      : null;
+
+                  await NewsService.addNews(
+                    '12345', // Example userId, replace with actual user ID
+                    headline,
+                    newsContent,
+                    imageUrl,
+                    DateTime.now().millisecondsSinceEpoch,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('News successfully posted!'),
+                    ),
+                  );
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Failed to post news: $e'),
+                    ),
+                  );
+                }
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Please fill in all fields'),
+                  ),
+                );
+              }
+            },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -205,27 +250,5 @@ class _CreateNewsState extends State<CreateNews> {
         ),
       ],
     );
-  }
-
-  Future<void> _selectImage() async {
-    if (selectedImages.length >= 4) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('You can\'t select more than 4 images'),
-        ),
-      );
-      return;
-    }
-
-    XFile? image = await CustomImagePicker.showImagePickerDialog(context);
-    if (image != null) {
-      setState(() {
-        selectedImages.add(image);
-        print('Selected Images:');
-        for (var i = 0; i < selectedImages.length; i++) {
-          print(selectedImages[i]?.path);
-        }
-      });
-    }
   }
 }

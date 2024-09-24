@@ -23,14 +23,16 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
+        border: Border.all(
+          color: Colors.black,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            // Publisher information row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -38,29 +40,26 @@ class NewsCard extends StatelessWidget {
                   children: [
                     Avatar(
                       size: 20,
-                      src: publisherImg,
+                      src: publisherImg, // User avatar
                     ),
+                    const SizedBox(width: 8), // Spacing between avatar and text
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            Text(
-                              publisherName,
-                            ),
-                            Icon(
+                            Text(publisherName),
+                            const Icon(
                               Icons.verified_outlined,
                               size: 12,
                               color: Colors.green,
-                            )
+                            ),
                           ],
                         ),
                         Text(
                           publishedTime,
-                          style: TextStyle(
-                            fontSize: 11,
-                          ),
-                        )
+                          style: const TextStyle(fontSize: 11),
+                        ),
                       ],
                     ),
                   ],
@@ -71,21 +70,35 @@ class NewsCard extends StatelessWidget {
                 ),
               ],
             ),
-            Image.asset(
-              img,
-            ),
+            
+            // Image (network or asset)
+            img.startsWith('http')
+                ? Image.network(
+                    img,
+                    height: 200, // Adjust as needed
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    img,
+                    height: 200, // Adjust as needed
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+            
+            // Headline and content
+            const SizedBox(height: 8),
             Text(
               headline,
-              style: TextStyle(
-                fontSize: 22,
-              ),
+              style: const TextStyle(fontSize: 22),
             ),
+            const SizedBox(height: 4),
             Text(
               content,
-              style: TextStyle(
-                fontSize: 12,
-              ),
+              style: const TextStyle(fontSize: 12),
             ),
+            
+            // Interactions row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -110,7 +123,7 @@ class NewsCard extends StatelessWidget {
                   icon: const Icon(Icons.more_vert),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
