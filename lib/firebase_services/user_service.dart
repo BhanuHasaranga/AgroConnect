@@ -87,7 +87,7 @@ class UserService {
   static Future<void> userRegister(
     String username,
     String userEmail,
-    String userPhone,
+    String? userPhone,
     List<String>? userOccupations, // List of occupations
     int? mainOccupationIndex, // Index of main occupation
     String? profilePicture,

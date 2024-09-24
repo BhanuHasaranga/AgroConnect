@@ -1,9 +1,7 @@
 import 'package:agro_connect/auth/auth_page.dart';
-import 'package:agro_connect/firebase_services/firebase_auth.dart';
 import 'package:agro_connect/firebase_services/user_service.dart';
 import 'package:agro_connect/screens/forgot_password_screen.dart';
 import 'package:agro_connect/screens/signup_screen.dart';
-import 'package:agro_connect/util/excption.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -14,7 +12,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final Authentication _auth = Authentication(); // Authentication instance
 
   final TextEditingController email = TextEditingController();
   FocusNode emailF = FocusNode();
