@@ -89,7 +89,7 @@ class UserService {
     String userEmail,
     String userPhone,
     List<String>? userOccupations, // List of occupations
-    int? mainOccupationIndex,       // Index of main occupation
+    int? mainOccupationIndex, // Index of main occupation
     String? profilePicture,
     String? bio,
     String? city,
@@ -99,8 +99,8 @@ class UserService {
     String userPassword,
   ) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: userEmail,
         password: userPassword,
       );
@@ -177,7 +177,8 @@ class UserService {
     }
   }
 
-  static Future<void> resetPassword(String userEmail, BuildContext context) async {
+  static Future<void> resetPassword(
+      String userEmail, BuildContext context) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: userEmail,
@@ -200,6 +201,23 @@ class UserService {
           content: Text(e.toString()),
         ),
       );
+    }
+  }
+
+  // Fetch username by userId
+  static Future<String> getUserNameById(String userId) async {
+    try {
+      final DocumentSnapshot userSnapshot =
+          await FirebaseFirestore.instance.collection('user').doc(userId).get();
+      if (userSnapshot.exists) {
+        final userData = userSnapshot.data() as Map<String, dynamic>;
+        return userData['name'] ??
+            'Unknown'; // Return 'Unknown' if name is not found
+      } else {
+        return 'Unknown';
+      }
+    } catch (e) {
+      throw 'Failed to get user name: $e';
     }
   }
 }
