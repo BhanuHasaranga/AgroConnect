@@ -211,7 +211,7 @@ class UserService {
           await FirebaseFirestore.instance.collection('user').doc(userId).get();
       if (userSnapshot.exists) {
         final userData = userSnapshot.data() as Map<String, dynamic>;
-        return userData['name'] ??
+        return userData['username'] ??
             'Unknown'; // Return 'Unknown' if name is not found
       } else {
         return 'Unknown';
