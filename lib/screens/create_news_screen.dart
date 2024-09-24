@@ -214,6 +214,7 @@ class _CreateNewsState extends State<CreateNews> {
                       content: Text('News successfully posted!'),
                     ),
                   );
+                  Navigator.pop(context);
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
